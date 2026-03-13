@@ -1,35 +1,28 @@
-# Домашняя работа 22.2 Знакомство с Django
+# Homework 22.2 — E-Commerce Catalog
 
-## Описание:
+C++ implementation of an e-commerce product catalog with efficient search and filtering, inspired by the Django Product + Category models.
 
-Это проект интернет-магазина.
+## Data Structures & Complexity
 
-## Использование:
+| Operation | Time | Method |
+|---|---|---|
+| Category lookup | O(1) amortized | unordered_map -> vector of indices |
+| Price range query | O(log n + k) | sort + lower_bound + upper_bound |
+| Statistics (min/max/mean) | O(n) | single pass |
+| Median | O(n log n) | sort prices |
+| Low stock filter | O(n) | linear scan |
 
-1. Клонируйте репозиторий:
-```
-https://github.com/Seriynaya/Homework22.2.git
-```
+## Build & Run
 
-
-2. Установление зависимостей:
-```
-pip install django
-```
-
-3. Запуск проекта:
-```
-python main.py
+```bash
+g++ -std=c++17 -O2 -o homework22 main.cpp
+./homework22
 ```
 
+## Description
 
-## Структура проекта:
-
-1. catalog/ - приложение проекта.
-2. config/ - папка, содержащая в себе настройки проекта.
-3. static/ - папка, содержащая в себе шаблоны стилей CSS и JS.
-
-## Документация:
-
-1. Модуль urls.py позволяет получать URL приложения с которым мы работаем.
-2. Модуль views.py позволяет обработать, отрендерить запрос на страницы проекта.
+- Product and Category structs mirroring Django ORM models
+- Hash map index for O(1) category-based product lookup
+- Binary search (lower_bound/upper_bound) for price range queries on sorted index
+- Full catalog statistics: min, max, mean, median price and total inventory
+- Inventory alert system for low-stock products
